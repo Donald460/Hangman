@@ -1,0 +1,86 @@
+import random
+stages = ['''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========
+''', '''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+''']
+
+end_of_game= False
+words= ["antecedent", "masard", "cherub","ezra"]
+chosen_word=random.choice(words)
+chosen_word.lower()
+word_length= len(chosen_word)
+lives= 6
+display= []
+for _ in range(word_length):
+    display+= '_'
+
+
+
+while not end_of_game:
+    user_guess= input("Guess a letter:\n")
+    for position in range(word_length):
+        letter=chosen_word[position]
+        if user_guess == letter:
+            display[position] = letter
+    if user_guess not in chosen_word:
+        lives -= 1
+        if lives == 0:
+            end_of_game = True
+            print("You lose.")
+    print(f"{' '.join(display)}")
+    if "_" not in display:
+        end_of_game = True
+        print("You win.")
+    print(stages[lives])
